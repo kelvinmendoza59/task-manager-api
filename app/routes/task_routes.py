@@ -6,7 +6,18 @@ bp = Blueprint('tasks', __name__, url_prefix='/api/tasks')
 
 @bp.route('', methods=['GET'])
 def get_tasks():
-    tasks = Task.query.all()
+    priority = request.args.get('priority')
+    completed = request.args.get('completed')
+
+    query = Task.query
+
+    if priority:
+        query = query.filter_by(priority=priority)
+    if completed is not None:
+        completed_bool = completed.lower() == 'true'
+        query = query.filter_by(completed=completed_bool)
+
+    tasks = query.all()
     return jsonify([task.to_dict() for task in tasks]), 200
 
 @bp.route('/<int:id>', methods=['GET'])
