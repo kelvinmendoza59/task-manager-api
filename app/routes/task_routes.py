@@ -4,6 +4,8 @@ from app.models.task import Task
 
 bp = Blueprint('tasks', __name__, url_prefix='/api/tasks')
 
+# TODO: Add pagination for large task lists
+# TODO: Implement authentication middleware
 @bp.route('', methods=['GET'])
 def get_tasks():
     priority = request.args.get('priority')
