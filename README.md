@@ -1,5 +1,7 @@
 # Task Manager API
 
+> 📅 Developed in 2023 | Migrated to GitHub 2025
+
 REST API for task management with Flask and SQLAlchemy.
 
 ## Technologies
